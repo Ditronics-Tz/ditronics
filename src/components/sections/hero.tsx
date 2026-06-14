@@ -109,44 +109,6 @@ export function Hero() {
 function HeroVisual() {
   return (
     <div className="relative aspect-square w-full">
-      {/* Main glass dashboard card */}
-      <motion.div
-        variants={float}
-        animate="animate"
-        className="glass absolute inset-x-2 top-6 rounded-2xl p-5 shadow-2xl shadow-brand-blue/10"
-      >
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <span className="size-2.5 rounded-full bg-brand-blue" />
-            <span className="text-sm font-semibold">Operations Overview</span>
-          </div>
-          <span className="rounded-full bg-brand-cyan/15 px-2 py-0.5 text-xs font-medium text-brand-cyan">
-            Live
-          </span>
-        </div>
-        <div className="mt-4 grid grid-cols-3 gap-3">
-          {[
-            { v: "99.9%", l: "Uptime" },
-            { v: "1.2k", l: "Devices" },
-            { v: "+27%", l: "Growth" },
-          ].map((s) => (
-            <div key={s.l} className="rounded-xl bg-foreground/5 p-3">
-              <div className="text-lg font-bold text-gradient">{s.v}</div>
-              <div className="text-[11px] text-muted-foreground">{s.l}</div>
-            </div>
-          ))}
-        </div>
-        <div className="mt-4 flex h-24 items-end gap-1.5">
-          {[40, 65, 50, 80, 60, 92, 70, 100, 85].map((h, i) => (
-            <div
-              key={i}
-              className="flex-1 rounded-t bg-gradient-to-t from-brand-blue to-brand-cyan"
-              style={{ height: `${h}%` }}
-            />
-          ))}
-        </div>
-      </motion.div>
-
       {/* Floating chip: code */}
       <motion.div
         variants={float}
