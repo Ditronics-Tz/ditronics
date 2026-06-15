@@ -6,6 +6,7 @@ import { ArrowRight, Sparkles, CheckCircle2 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { GradientBlobs, GridBackdrop } from "@/components/shared/decor";
+import { ServicesWheel } from "@/components/shared/services-wheel";
 
 const highlights = [
   "Custom software & mobile apps",
@@ -19,7 +20,8 @@ export function Hero() {
       <GridBackdrop />
       <GradientBlobs />
       <div className="container-page py-20 sm:py-28 lg:py-32">
-        <div className="mx-auto max-w-3xl">
+        <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+          <div className="max-w-2xl">
           <motion.span
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
@@ -84,6 +86,16 @@ export function Hero() {
               </li>
             ))}
           </motion.ul>
+          </div>
+
+          <motion.div
+            initial={{ opacity: 0, scale: 0.92 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.7, delay: 0.2 }}
+            className="relative"
+          >
+            <ServicesWheel />
+          </motion.div>
         </div>
       </div>
     </section>
