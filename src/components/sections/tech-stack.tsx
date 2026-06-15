@@ -1,9 +1,11 @@
+import type { CSSProperties } from "react";
+
 import { SectionHeading } from "@/components/shared/section-heading";
-import { techStack } from "@/content/company";
+import { toolkit } from "@/content/toolkit";
 
 export function TechStack() {
   // duplicate the list for a seamless marquee loop
-  const row = [...techStack, ...techStack];
+  const row = [...toolkit, ...toolkit];
 
   return (
     <section className="py-16 sm:py-24">
@@ -14,13 +16,39 @@ export function TechStack() {
       />
       <div className="relative mt-12 overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]">
         <div className="flex w-max animate-marquee gap-3 hover:[animation-play-state:paused]">
-          {row.map((tech, i) => (
-            <span
-              key={`${tech}-${i}`}
-              className="flex items-center rounded-full border border-border bg-card px-5 py-2.5 text-sm font-medium text-foreground/80"
+          {row.map((tool, i) => (
+            <div
+              key={`${tool.name}-${i}`}
+              style={
+                tool.color
+                  ? ({ "--bc": tool.color } as CSSProperties)
+                  : undefined
+              }
+              className="group flex items-center gap-2 rounded-full border border-border bg-card px-5 py-2.5 text-sm font-medium text-foreground/80"
             >
-              {tech}
-            </span>
+              <span
+                className={`shrink-0 text-foreground/55 transition-colors duration-300 ${
+                  tool.color
+                    ? "group-hover:text-[var(--bc)]"
+                    : "group-hover:text-foreground"
+                }`}
+              >
+                {tool.path ? (
+                  <svg
+                    viewBox="0 0 24 24"
+                    aria-hidden
+                    className="size-[1.05rem] fill-current"
+                  >
+                    <path d={tool.path} />
+                  </svg>
+                ) : tool.Icon ? (
+                  <tool.Icon className="size-[1.05rem]" aria-hidden />
+                ) : null}
+              </span>
+              <span className="transition-colors duration-300 group-hover:text-foreground">
+                {tool.name}
+              </span>
+            </div>
           ))}
         </div>
       </div>

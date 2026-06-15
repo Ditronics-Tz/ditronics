@@ -8,15 +8,17 @@ import { Icon } from "@/components/shared/icon";
 
 // Per-service presentation (colour + compact label for the wheel), keyed by
 // slug so the wheel always mirrors the services defined in content/services.ts.
+// Colours form an on-brand purple → cyan gradient that sweeps from the top
+// node down to the bottom, mirrored left/right for a seamless, cohesive ring.
 const meta: Record<string, { color: string; label: string }> = {
-  "software-development": { color: "#2f80c4", label: "Software" },
-  "mobile-development": { color: "#17a394", label: "Mobile" },
-  "iot-solutions": { color: "#5bb85b", label: "IoT" },
-  "cloud-solutions": { color: "#f2a93b", label: "Cloud" },
-  networking: { color: "#ef7d2e", label: "Networking" },
-  "hardware-solutions": { color: "#e0524d", label: "Hardware" },
-  cybersecurity: { color: "#9b59b6", label: "Security" },
-  "it-consultancy": { color: "#3f9bd4", label: "Consultancy" },
+  "software-development": { color: "#6c2f93", label: "Software" }, // plum (top)
+  "mobile-development": { color: "#5a3aa0", label: "Mobile" }, // indigo
+  "iot-solutions": { color: "#4a55c0", label: "IoT" }, // indigo-blue
+  "cloud-solutions": { color: "#3f8fd0", label: "Cloud" }, // azure
+  networking: { color: "#45c8e0", label: "Networking" }, // cyan (bottom)
+  "hardware-solutions": { color: "#3f8fd0", label: "Hardware" }, // azure
+  cybersecurity: { color: "#4a55c0", label: "Security" }, // indigo-blue
+  "it-consultancy": { color: "#5a3aa0", label: "Consultancy" }, // indigo
 };
 
 const nodes = services.map((s, i) => ({

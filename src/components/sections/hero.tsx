@@ -2,17 +2,11 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ArrowRight, Sparkles, CheckCircle2 } from "lucide-react";
+import { ArrowRight, Sparkles } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { GradientBlobs, GridBackdrop } from "@/components/shared/decor";
 import { ServicesWheel } from "@/components/shared/services-wheel";
-
-const highlights = [
-  "Custom software & mobile apps",
-  "IoT, cloud & cybersecurity",
-  "Trusted across Tanzania",
-];
 
 export function Hero() {
   return (
@@ -69,23 +63,6 @@ export function Hero() {
               <Link href="/services">View Our Services</Link>
             </Button>
           </motion.div>
-
-          <motion.ul
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.28 }}
-            className="mt-8 flex flex-wrap gap-x-6 gap-y-2"
-          >
-            {highlights.map((h) => (
-              <li
-                key={h}
-                className="flex items-center gap-2 text-sm text-muted-foreground"
-              >
-                <CheckCircle2 className="size-4 text-brand-cyan" />
-                {h}
-              </li>
-            ))}
-          </motion.ul>
           </div>
 
           <motion.div

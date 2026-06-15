@@ -23,9 +23,10 @@ import { MobileNav } from "@/components/layout/mobile-nav";
 import { services } from "@/content/services";
 import { industries } from "@/content/industries";
 
-const simpleLinks = [
-  { title: "About", href: "/about" },
+// Plain links shown after the Services / Industries dropdowns, ordered by importance.
+const trailingLinks = [
   { title: "Portfolio", href: "/portfolio" },
+  { title: "About", href: "/about" },
   { title: "Blog", href: "/blog" },
   { title: "Contact", href: "/contact" },
 ];
@@ -55,6 +56,20 @@ export function Navbar() {
 
         <NavigationMenu className="hidden lg:flex" viewport={false}>
           <NavigationMenuList>
+            <NavigationMenuItem>
+              <NavigationMenuLink asChild>
+                <Link
+                  href="/"
+                  className={cn(
+                    "inline-flex h-9 items-center rounded-md px-3 text-sm font-medium transition-colors hover:bg-muted",
+                    pathname === "/" && "text-brand-blue dark:text-brand-sky",
+                  )}
+                >
+                  Home
+                </Link>
+              </NavigationMenuLink>
+            </NavigationMenuItem>
+
             <NavigationMenuItem>
               <NavigationMenuTrigger>Services</NavigationMenuTrigger>
               <NavigationMenuContent>
@@ -91,6 +106,20 @@ export function Navbar() {
             </NavigationMenuItem>
 
             <NavigationMenuItem>
+              <NavigationMenuLink asChild>
+                <Link
+                  href="/studio"
+                  className={cn(
+                    "inline-flex h-9 items-center rounded-md px-3 text-sm font-medium transition-colors hover:bg-muted",
+                    pathname === "/studio" && "text-brand-blue dark:text-brand-sky",
+                  )}
+                >
+                  Studio
+                </Link>
+              </NavigationMenuLink>
+            </NavigationMenuItem>
+
+            <NavigationMenuItem>
               <NavigationMenuTrigger>Industries</NavigationMenuTrigger>
               <NavigationMenuContent>
                 <div className="grid w-[520px] grid-cols-2 gap-1 p-2">
@@ -113,7 +142,7 @@ export function Navbar() {
               </NavigationMenuContent>
             </NavigationMenuItem>
 
-            {simpleLinks.map((link) => (
+            {trailingLinks.map((link) => (
               <NavigationMenuItem key={link.href}>
                 <NavigationMenuLink asChild>
                   <Link

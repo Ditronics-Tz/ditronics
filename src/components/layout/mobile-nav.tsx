@@ -22,13 +22,16 @@ import { Logo } from "@/components/shared/logo";
 import { services } from "@/content/services";
 import { industries } from "@/content/industries";
 
-const directLinks = [
-  { title: "Home", href: "/" },
-  { title: "About", href: "/about" },
+// Shown after the Services / Industries sections, ordered by importance.
+const moreLinks = [
   { title: "Portfolio", href: "/portfolio" },
+  { title: "About", href: "/about" },
   { title: "Blog", href: "/blog" },
   { title: "Contact", href: "/contact" },
 ];
+
+const linkClass =
+  "rounded-lg px-3 py-2.5 text-sm font-medium transition-colors hover:bg-muted";
 
 export function MobileNav() {
   const [open, setOpen] = React.useState(false);
@@ -56,16 +59,9 @@ export function MobileNav() {
         </SheetHeader>
 
         <nav className="flex flex-col p-3">
-          {directLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              onClick={close}
-              className="rounded-lg px-3 py-2.5 text-sm font-medium transition-colors hover:bg-muted"
-            >
-              {link.title}
-            </Link>
-          ))}
+          <Link href="/" onClick={close} className={linkClass}>
+            Home
+          </Link>
 
           <Accordion type="single" collapsible className="w-full">
             <AccordionItem value="services" className="border-0">
@@ -92,6 +88,13 @@ export function MobileNav() {
                 ))}
               </AccordionContent>
             </AccordionItem>
+          </Accordion>
+
+          <Link href="/studio" onClick={close} className={linkClass}>
+            Studio
+          </Link>
+
+          <Accordion type="single" collapsible className="w-full">
             <AccordionItem value="industries" className="border-0">
               <AccordionTrigger className="px-3 py-2.5 text-sm font-medium hover:no-underline">
                 Industries
@@ -110,6 +113,17 @@ export function MobileNav() {
               </AccordionContent>
             </AccordionItem>
           </Accordion>
+
+          {moreLinks.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              onClick={close}
+              className={linkClass}
+            >
+              {link.title}
+            </Link>
+          ))}
         </nav>
 
         <div className="p-5">

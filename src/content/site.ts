@@ -52,10 +52,11 @@ export type NavLink = {
 
 export const mainNav: NavLink[] = [
   { title: "Home", href: "/" },
-  { title: "About", href: "/about" },
   { title: "Services", href: "/services" },
-  { title: "Portfolio", href: "/portfolio" },
+  { title: "Studio", href: "/studio" },
   { title: "Industries", href: "/industries" },
+  { title: "Portfolio", href: "/portfolio" },
+  { title: "About", href: "/about" },
   { title: "Blog", href: "/blog" },
   { title: "Contact", href: "/contact" },
 ];
@@ -63,6 +64,7 @@ export const mainNav: NavLink[] = [
 export const footerNav = {
   company: [
     { title: "About Us", href: "/about" },
+    { title: "Photo Studio", href: "/studio" },
     { title: "Portfolio", href: "/portfolio" },
     { title: "Industries", href: "/industries" },
     { title: "Blog & Insights", href: "/blog" },
