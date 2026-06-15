@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { ArrowRight, Sparkles } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
@@ -9,8 +9,42 @@ import { GradientBlobs, GridBackdrop } from "@/components/shared/decor";
 import { ServicesWheel } from "@/components/shared/services-wheel";
 
 export function Hero() {
+  const reduce = useReducedMotion();
+
   return (
     <section className="relative overflow-hidden">
+      {/* tech video backdrop — dark mode only, with poster fallback */}
+      {reduce ? (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img
+          src="/hero-tech-poster.jpg"
+          alt=""
+          aria-hidden="true"
+          className="absolute inset-0 -z-20 hidden size-full object-cover dark:block"
+        />
+      ) : (
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          poster="/hero-tech-poster.jpg"
+          aria-hidden="true"
+          className="absolute inset-0 -z-20 hidden size-full object-cover dark:block"
+        >
+          <source src="/hero-tech.mp4" type="video/mp4" />
+        </video>
+      )}
+      {/* legibility + blend overlay (dark mode only) */}
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 -z-10 hidden bg-gradient-to-r from-background via-background/85 to-background/55 dark:block"
+      />
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 -z-10 hidden bg-gradient-to-b from-background/70 via-transparent to-background dark:block"
+      />
+
       <GridBackdrop />
       <GradientBlobs />
       <div className="container-page py-20 sm:py-28 lg:py-32">
