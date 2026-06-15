@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { motion, type Variants } from "framer-motion";
+import { motion } from "framer-motion";
 import { ArrowRight, Sparkles, CheckCircle2 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
@@ -13,20 +13,13 @@ const highlights = [
   "Trusted across Tanzania",
 ];
 
-const float: Variants = {
-  animate: {
-    y: [0, -10, 0],
-    transition: { duration: 6, repeat: Infinity, ease: "easeInOut" },
-  },
-};
-
 export function Hero() {
   return (
     <section className="relative overflow-hidden">
       <GridBackdrop />
       <GradientBlobs />
-      <div className="container-page grid items-center gap-12 py-20 sm:py-28 lg:grid-cols-2 lg:py-32">
-        <div>
+      <div className="container-page py-20 sm:py-28 lg:py-32">
+        <div className="mx-auto max-w-3xl">
           <motion.span
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
@@ -92,52 +85,7 @@ export function Hero() {
             ))}
           </motion.ul>
         </div>
-
-        <motion.div
-          initial={{ opacity: 0, scale: 0.96 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.7, delay: 0.15 }}
-          className="relative mx-auto w-full max-w-md lg:max-w-none"
-        >
-          <HeroVisual />
-        </motion.div>
       </div>
     </section>
-  );
-}
-
-function HeroVisual() {
-  return (
-    <div className="relative aspect-square w-full">
-      {/* Floating chip: code */}
-      <motion.div
-        variants={float}
-        animate="animate"
-        transition={{ duration: 7, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-        className="glass absolute -left-2 bottom-10 rounded-xl p-3 shadow-xl"
-      >
-        <div className="flex items-center gap-2 text-xs font-mono">
-          <span className="size-2 rounded-full bg-green-500" />
-          <span className="text-muted-foreground">deploy</span>
-          <span className="font-semibold text-brand-cyan">success</span>
-        </div>
-      </motion.div>
-
-      {/* Floating chip: secure */}
-      <motion.div
-        variants={float}
-        animate="animate"
-        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut", delay: 2 }}
-        className="glass absolute -right-1 bottom-24 flex items-center gap-2 rounded-xl px-3 py-2 shadow-xl"
-      >
-        <span className="flex size-7 items-center justify-center rounded-lg bg-brand-indigo/15 text-brand-indigo">
-          <CheckCircle2 className="size-4" />
-        </span>
-        <div className="text-xs">
-          <div className="font-semibold">Secured</div>
-          <div className="text-muted-foreground">256-bit</div>
-        </div>
-      </motion.div>
-    </div>
   );
 }
