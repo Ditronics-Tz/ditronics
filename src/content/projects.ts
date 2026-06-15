@@ -11,10 +11,15 @@ export type Project = {
   outcome: string;
   technologies: string[];
   metrics: { value: string; label: string }[];
-  /** tailwind gradient classes for the cover */
+  /** tailwind gradient classes for the cover (fallback behind the image) */
   gradient: string;
+  /** cover image URL */
+  image?: string;
   featured?: boolean;
 };
+
+const unsplash = (id: string) =>
+  `https://images.unsplash.com/photo-${id}?auto=format&fit=crop&w=800&q=60`;
 
 export const projectCategories = [
   "All",
@@ -47,6 +52,7 @@ export const projects: Project[] = [
       { value: "98%", label: "On-time deliveries" },
     ],
     gradient: "from-brand-blue to-brand-cyan",
+    image: unsplash("1586528116311-ad8dd3c8310d"),
     featured: true,
   },
   {
@@ -70,6 +76,7 @@ export const projects: Project[] = [
       { value: "100%", label: "Automated reconciliation" },
     ],
     gradient: "from-brand-indigo to-brand-blue",
+    image: unsplash("1554224155-6726b3ff858f"),
     featured: true,
   },
   {
@@ -93,6 +100,7 @@ export const projects: Project[] = [
       { value: "Zero", label: "Lost records" },
     ],
     gradient: "from-brand-cyan to-brand-indigo",
+    image: unsplash("1538108149393-fbbd81895907"),
     featured: true,
   },
   {
@@ -116,6 +124,7 @@ export const projects: Project[] = [
       { value: "24/7", label: "Field monitoring" },
     ],
     gradient: "from-brand-cyan to-brand-blue",
+    image: unsplash("1500382017468-9049fed747ef"),
   },
   {
     slug: "retail-pos-ecommerce",
@@ -138,6 +147,7 @@ export const projects: Project[] = [
       { value: "12", label: "Branches unified" },
     ],
     gradient: "from-brand-blue to-brand-indigo",
+    image: unsplash("1556740758-90de374c12ad"),
   },
   {
     slug: "campus-network-upgrade",
@@ -160,6 +170,7 @@ export const projects: Project[] = [
       { value: "3", label: "Secure network zones" },
     ],
     gradient: "from-brand-indigo to-brand-cyan",
+    image: unsplash("1558494949-ef010cbdcc31"),
   },
 ];
 

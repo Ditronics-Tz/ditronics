@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
 
 import { Badge } from "@/components/ui/badge";
@@ -13,16 +14,27 @@ export function ProjectCard({ project }: { project: Project }) {
       <div
         className={`relative aspect-[16/10] overflow-hidden bg-gradient-to-br ${project.gradient}`}
       >
-        <div className="absolute inset-0 gradient-mesh opacity-30" />
-        <div className="absolute inset-0 flex items-center justify-center p-6">
-          <span className="text-center text-xl font-bold leading-tight text-white drop-shadow-sm font-heading">
+        {project.image ? (
+          <Image
+            src={project.image}
+            alt={`${project.client} — ${project.title}`}
+            fill
+            sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+            className="object-cover transition-transform duration-500 group-hover:scale-105"
+          />
+        ) : (
+          <div className="absolute inset-0 gradient-mesh opacity-30" />
+        )}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/25 to-transparent" />
+        <div className="absolute inset-x-0 bottom-0 p-5">
+          <span className="text-lg font-bold leading-tight text-white drop-shadow-md font-heading">
             {project.client}
           </span>
         </div>
         <span className="absolute right-3 top-3 flex size-9 items-center justify-center rounded-full bg-white/20 text-white backdrop-blur-sm transition-transform duration-300 group-hover:scale-110">
           <ArrowUpRight className="size-4" />
         </span>
-        <Badge className="absolute bottom-3 left-3 border-white/30 bg-white/20 text-white backdrop-blur-sm">
+        <Badge className="absolute left-3 top-3 border-white/30 bg-white/20 text-white backdrop-blur-sm">
           {project.category}
         </Badge>
       </div>

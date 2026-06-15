@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 
 import { services } from "@/content/services";
 import { Icon } from "@/components/shared/icon";
@@ -33,6 +33,8 @@ const NODE_RADIUS = 39; // % of the box, where the icon nodes sit
 const ARC_RADIUS = 39; // SVG ring radius (viewBox 0..100)
 const STEP = 360 / COUNT;
 const GAP_DEG = 5; // gap between coloured arcs
+const ORBIT = 9; // seconds for the electron to complete one loop
+const SHINE = 0.06; // half-width of a node's shine, as a fraction of the loop
 
 function polar(cx: number, cy: number, r: number, deg: number) {
   const rad = (deg * Math.PI) / 180;
@@ -40,6 +42,8 @@ function polar(cx: number, cy: number, r: number, deg: number) {
 }
 
 export function ServicesWheel() {
+  const reduce = useReducedMotion();
+
   return (
     <div className="relative mx-auto aspect-square w-full max-w-[34rem]">
       {/* slowly rotating dashed halo */}
@@ -101,6 +105,21 @@ export function ServicesWheel() {
         })}
       </svg>
 
+      {/* orbiting electron — rides the ring endlessly */}
+      {!reduce && (
+        <motion.div
+          aria-hidden
+          className="pointer-events-none absolute inset-[11%]"
+          animate={{ rotate: 360 }}
+          transition={{ duration: ORBIT, ease: "linear", repeat: Infinity }}
+        >
+          <span className="absolute left-1/2 top-0 -translate-x-1/2 -translate-y-1/2">
+            <span className="absolute left-1/2 top-1/2 size-4 -translate-x-1/2 -translate-y-1/2 rounded-full bg-brand-blue/40 blur-md" />
+            <span className="relative block size-2 rounded-full bg-brand-blue shadow-[0_0_8px_2px] shadow-brand-blue/70" />
+          </span>
+        </motion.div>
+      )}
+
       {/* centre hub */}
       <div className="absolute left-1/2 top-1/2 grid aspect-square w-[46%] -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full border border-border bg-foreground/[0.04] p-4 text-center backdrop-blur-md">
         <div>
@@ -137,15 +156,36 @@ export function ServicesWheel() {
               title={s.title}
               className="group flex flex-col items-center gap-1.5 outline-none"
             >
-              <span className="relative grid size-12 place-items-center rounded-full bg-white shadow-lg shadow-black/30 ring-1 ring-black/5 transition-transform duration-300 group-hover:scale-110 group-focus-visible:scale-110 sm:size-14">
-                <span style={{ color: s.color }}>
-                  <Icon name={s.icon} className="size-5 sm:size-6" />
-                </span>
-                <span
-                  className="absolute -right-1.5 -top-1.5 grid size-5 place-items-center rounded-full text-[9px] font-bold text-white ring-2 ring-background"
-                  style={{ backgroundColor: s.color }}
-                >
-                  {s.n}
+              <span className="relative grid size-12 place-items-center sm:size-14">
+                {/* shine halo — blooms as the electron passes this node */}
+                {!reduce && (
+                  <motion.span
+                    aria-hidden
+                    className="absolute inset-0 rounded-full blur-md"
+                    style={{ backgroundColor: s.color }}
+                    animate={{ opacity: [0, 0.7, 0, 0], scale: [1, 1.55, 1, 1] }}
+                    transition={{
+                      duration: ORBIT,
+                      // peak (at fraction SHINE of the keyframe) lands exactly
+                      // when the electron crosses this node
+                      times: [0, SHINE, 2 * SHINE, 1],
+                      ease: "easeInOut",
+                      repeat: Infinity,
+                      delay:
+                        (((i / COUNT - SHINE) % 1) + 1) % 1 * ORBIT,
+                    }}
+                  />
+                )}
+                <span className="relative grid size-full place-items-center rounded-full bg-white shadow-lg shadow-black/30 ring-1 ring-black/5 transition-transform duration-300 group-hover:scale-110 group-focus-visible:scale-110">
+                  <span style={{ color: s.color }}>
+                    <Icon name={s.icon} className="size-5 sm:size-6" />
+                  </span>
+                  <span
+                    className="absolute -right-1.5 -top-1.5 grid size-5 place-items-center rounded-full text-[9px] font-bold text-white ring-2 ring-background"
+                    style={{ backgroundColor: s.color }}
+                  >
+                    {s.n}
+                  </span>
                 </span>
               </span>
               <span className="text-[10px] font-semibold tracking-wide text-muted-foreground transition-colors group-hover:text-foreground sm:text-xs">
