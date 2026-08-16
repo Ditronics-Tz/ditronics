@@ -5,7 +5,13 @@ import { ArrowUpRight } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import type { Project } from "@/content/projects";
 
-export function ProjectCard({ project }: { project: Project }) {
+export function ProjectCard({
+  project,
+  priority = false,
+}: {
+  project: Project;
+  priority?: boolean;
+}) {
   return (
     <Link
       href={`/portfolio/${project.slug}`}
@@ -13,6 +19,7 @@ export function ProjectCard({ project }: { project: Project }) {
     >
       <div
         className={`relative aspect-[16/10] overflow-hidden bg-gradient-to-br ${project.gradient}`}
+        style={{ position: "relative" }}
       >
         {project.image ? (
           <Image
@@ -21,6 +28,7 @@ export function ProjectCard({ project }: { project: Project }) {
             fill
             sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
             className="object-cover transition-transform duration-500 group-hover:scale-105"
+            priority={priority}
           />
         ) : (
           <div className="absolute inset-0 gradient-mesh opacity-30" />

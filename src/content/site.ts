@@ -21,8 +21,8 @@ export const siteConfig = {
     whatsapp: "+255 746 188 095",
     whatsappNumber: "255746188095",
     address: {
-      line1: "Mlimani City Office Tower, 8th Floor",
-      line2: "Sam Nujoma Road, Ubungo",
+      line1: "Shangwe Complex, Kiziza Street",
+      line2: "Kibada, Kigamboni",
       city: "Dar es Salaam",
       country: "Tanzania",
     },

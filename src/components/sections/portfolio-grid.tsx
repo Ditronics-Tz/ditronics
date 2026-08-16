@@ -38,7 +38,7 @@ export function PortfolioGrid() {
 
       <motion.div layout className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         <AnimatePresence mode="popLayout">
-          {filtered.map((project) => (
+          {filtered.map((project, index) => (
             <motion.div
               key={project.slug}
               layout
@@ -48,7 +48,7 @@ export function PortfolioGrid() {
               transition={{ duration: 0.3 }}
               className="h-full"
             >
-              <ProjectCard project={project} />
+              <ProjectCard project={project} priority={index < 3} />
             </motion.div>
           ))}
         </AnimatePresence>

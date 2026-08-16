@@ -157,21 +157,21 @@ export const milestones = [
 export const team = [
   {
     name: "Athanas Shauritanga",
-    role: "Founder & Chief Executive Officer",
-    bio: "Sets the vision and leads Ditronics' mission to be Tanzania's most trusted technology partner.",
+    role: "Chief Technology Officer",
+    bio: "Leads engineering and architecture across software, cloud and IoT delivery.",
     initials: "AS",
   },
   {
-    name: "Fatma Juma",
-    role: "Chief Technology Officer",
-    bio: "Leads engineering and architecture across software, cloud and IoT delivery.",
-    initials: "FJ",
-  },
-  {
-    name: "Emmanuel Nyerere",
+    name: "Dadi Dadi",
     role: "Head of Software Engineering",
     bio: "Oversees the delivery of robust, scalable software and mobile applications.",
-    initials: "EN",
+    initials: "DD",
+  },
+  {
+    name: "Miriam Robert",
+    role: "Production Manager",
+    bio: "Coordinates project delivery and keeps production timelines on track for every engagement.",
+    initials: "MR",
   },
   {
     name: "Sophia Mremi",

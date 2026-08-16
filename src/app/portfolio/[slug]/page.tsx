@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowRight, AlertCircle, Lightbulb, TrendingUp } from "lucide-react";
@@ -73,13 +74,28 @@ export default async function ProjectPage({
 
       {/* Cover + metrics */}
       <section className="container-page py-16 sm:py-24">
-        <Reveal
-          className={`relative flex aspect-[21/9] items-center justify-center overflow-hidden rounded-3xl bg-gradient-to-br ${project.gradient}`}
-        >
-          <div className="absolute inset-0 gradient-mesh opacity-30" />
-          <span className="px-6 text-center text-3xl font-bold text-white drop-shadow font-heading sm:text-4xl">
-            {project.client}
-          </span>
+        <Reveal>
+          <div
+            className={`relative flex aspect-[21/9] items-center justify-center overflow-hidden rounded-3xl bg-gradient-to-br ${project.gradient}`}
+            style={{ position: "relative" }}
+          >
+            {project.image ? (
+              <Image
+                src={project.image}
+                alt={`${project.client} — ${project.title}`}
+                fill
+                priority
+                sizes="(min-width: 1280px) 1200px, 100vw"
+                className="object-cover"
+              />
+            ) : (
+              <div className="absolute inset-0 gradient-mesh opacity-30" />
+            )}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
+            <span className="relative z-10 px-6 text-center text-3xl font-bold text-white drop-shadow font-heading sm:text-4xl">
+              {project.client}
+            </span>
+          </div>
         </Reveal>
 
         <div className="mt-8 grid gap-4 sm:grid-cols-3">

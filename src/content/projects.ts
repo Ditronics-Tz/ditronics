@@ -32,6 +32,53 @@ export const projectCategories = [
 
 export const projects: Project[] = [
   {
+    slug: "cardio-scanner",
+    title: "Cardio Scanner",
+    client: "ETH",
+    industry: "Healthcare",
+    category: "Mobile",
+    summary:
+      "An iOS app that analyses heart health from a short video clip using AI.",
+    challenge:
+      "ETH needed a simple, non-invasive way for users to assess heart health from a phone camera, without specialised medical hardware.",
+    solution:
+      "We built an iOS application that captures a short video of the user's fingertip or face, extracts pulse signals from the clip, and uses AI models to estimate heart rate and indicate overall heart-health status with clear, actionable results.",
+    outcome:
+      "Users can scan and receive AI-assisted heart-health insights in seconds from their iPhone, giving ETH a polished consumer health product ready for further clinical validation.",
+    technologies: ["Swift", "iOS", "Core ML", "AVFoundation", "AI/ML"],
+    metrics: [
+      { value: "iOS", label: "Native mobile app" },
+      { value: "AI", label: "Video-based analysis" },
+      { value: "Seconds", label: "To heart-health insight" },
+    ],
+    gradient: "from-brand-cyan to-brand-indigo",
+    image: "/projects/cardio-scanner-cover.jpg",
+    featured: true,
+  },
+  {
+    slug: "rental-property-management",
+    title: "Rental Property Management System",
+    client: "AS MWAMBA",
+    industry: "Real Estate",
+    category: "Software",
+    summary:
+      "A platform to manage rental properties, tenants, leases and payments in one place.",
+    challenge:
+      "AS MWAMBA managed multiple rental units with spreadsheets and paper records, making it hard to track occupancy, rent collection and maintenance requests across properties.",
+    solution:
+      "We built a rental property management system covering property and unit inventory, tenant profiles, lease agreements, rent invoicing and collection, maintenance tickets and owner reporting — accessible from web for staff and landlords.",
+    outcome:
+      "AS MWAMBA gained a single source of truth for every property, faster rent follow-up and clearer visibility into occupancy and cash flow.",
+    technologies: ["Next.js", "Node.js", "PostgreSQL", "TypeScript", "AWS"],
+    metrics: [
+      { value: "All-in-one", label: "Property operations" },
+      { value: "Live", label: "Occupancy & rent status" },
+      { value: "Digital", label: "Leases & invoices" },
+    ],
+    gradient: "from-brand-indigo to-brand-blue",
+    image: "/projects/rental-property-management-cover.jpg",
+  },
+  {
     slug: "national-logistics-tracking",
     title: "Fleet & Cargo Tracking Platform",
     client: "Serengeti Logistics",
@@ -101,7 +148,6 @@ export const projects: Project[] = [
     ],
     gradient: "from-brand-cyan to-brand-indigo",
     image: unsplash("1538108149393-fbbd81895907"),
-    featured: true,
   },
   {
     slug: "agri-iot-monitoring",
@@ -178,4 +224,4 @@ export function getProject(slug: string): Project | undefined {
   return projects.find((p) => p.slug === slug);
 }
 
-export const featuredProjects = projects.filter((p) => p.featured);
+export const featuredProjects = projects.filter((p) => p.featured).slice(0, 3);
